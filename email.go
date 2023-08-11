@@ -1,4 +1,4 @@
-package itswizard_aws
+package itswizard_module_awsBrooker
 
 import (
 	"crypto/tls"
