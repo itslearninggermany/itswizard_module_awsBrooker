@@ -119,6 +119,9 @@ func ListAllDataOfBucket(bucketName string, path string) (m map[time.Time]string
 	return
 }
 
+/*
+Get the latst upload file of a bucket.
+*/
 func GetTheLatestUploadedFile(bucketName string, path string) (lastFile, log string) {
 	var dateSlice timeSlice = []time.Time{}
 
@@ -139,6 +142,9 @@ func GetTheLatestUploadedFile(bucketName string, path string) (lastFile, log str
 	return
 }
 
+/*
+Get the latst upload file of a bucket with log.
+*/
 func DownloadTheLastUploadedFile(bucketName string, path string, targetpath string) (filename string, log string) {
 	sess, _ := session.NewSession(&aws.Config{Region: aws.String("eu-central-1")})
 	filename, log = GetTheLatestUploadedFile(bucketName, path)
@@ -166,6 +172,9 @@ func DownloadTheLastUploadedFile(bucketName string, path string, targetpath stri
 	return
 }
 
+/*
+Get the file of a bucket with log.
+*/
 func DownloadFileFromBucket(bucketName string, filename string) (content []byte, log string) {
 	sess, _ := session.NewSession(&aws.Config{Region: aws.String("eu-central-1")})
 	/*
