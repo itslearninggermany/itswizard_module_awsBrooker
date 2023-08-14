@@ -15,12 +15,18 @@ import (
 	"time"
 )
 
+/*
+Helpfunction for Time
+*/
 type timeSlice []time.Time
 
 func (s timeSlice) Less(i, j int) bool { return s[i].Before(s[j]) }
 func (s timeSlice) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 func (s timeSlice) Len() int           { return len(s) }
 
+/*
+Creates a new bucket
+*/
 func CreateANewBucket(bucketName string) (success bool, log string) {
 	success = true
 	sess, _ := session.NewSession(&aws.Config{Region: aws.String("eu-central-1")})
@@ -51,9 +57,11 @@ func CreateANewBucket(bucketName string) (success bool, log string) {
 	return
 }
 
-// This function upload a file to the s3 Bucket.
-// Important the path has to end with "/"
-// Declare the postfix without the dot!
+/*
+This function upload a file to the s3 Bucket.
+Important the path has to end with "/"
+Declare the postfix without the dot!
+*/
 func UploadAFile(path string, bucketName string, folder string, postfix string, filename string) (log string) {
 	name := filename
 	if filename == "" {
@@ -88,6 +96,9 @@ func UploadAFile(path string, bucketName string, folder string, postfix string, 
 	return
 }
 
+/*
+This listed all Data of the given bucket
+*/
 func ListAllDataOfBucket(bucketName string, path string) (m map[time.Time]string, log string) {
 	sess, _ := session.NewSession(&aws.Config{Region: aws.String("eu-central-1")})
 
